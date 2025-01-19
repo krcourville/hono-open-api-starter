@@ -2,9 +2,11 @@
   "name": "hono-open-api-starter",
   "private": true,
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
+    "start": "npm run dev",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
@@ -13,7 +15,7 @@
     "typescript": "5.5.4"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "packageManager": "npm@10.9.0",
   "workspaces": [
