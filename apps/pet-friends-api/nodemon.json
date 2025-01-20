@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "execMap": {
+    "ts": "vite-node"
+  },
+  "watch": ["src/**/*.ts"],
+  "ignore": ["*.spec.ts"]
+}

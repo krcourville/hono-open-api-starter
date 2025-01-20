@@ -3,23 +3,12 @@ import { z, createRoute, OpenAPIHono } from '@hono/zod-openapi';
 export const pingResource = new OpenAPIHono();
 
 const PingParamsSchema = z.object({
-  message: z
-    .string()
-    .optional()
-    .openapi({
-      description: 'An optional message to echo',
-      param: {
-        name: 'message',
-        in: 'query',
-      },
-    }),
+  message: z.string().optional(),
 });
 
-const PingResponseSchema = z
-  .object({
-    time: z.string().datetime(),
-  })
-  .openapi('PingResponse');
+const PingResponseSchema = z.object({
+  time: z.string().datetime(),
+});
 
 export type PingResponse = z.infer<typeof PingResponseSchema>;
 

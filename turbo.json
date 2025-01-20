@@ -17,6 +17,7 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
+      "env": ["PORT"],
       "dependsOn": ["^dev"],
       "cache": false,
       "persistent": true
