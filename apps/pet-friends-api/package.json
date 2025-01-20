@@ -9,12 +9,6 @@
     "lint:fix": "eslint . --fix --max-warnings 0",
     "test": "vitest"
   },
-  "lint-staged": {
-    "*.{ts,tsx,md}": [
-      "prettier --write",
-      "eslint --fix --max-warnings 0"
-    ]
-  },
   "dependencies": {
     "@hono/node-server": "^1.13.7",
     "hono": "^4.6.17"
