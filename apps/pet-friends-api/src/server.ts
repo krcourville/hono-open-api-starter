@@ -1,10 +1,22 @@
 import { serve } from '@hono/node-server';
-import { Hono } from 'hono';
+import { OpenAPIHono } from '@hono/zod-openapi';
 
-export const app = new Hono();
+import { utilityResource } from './resource/utility/utility-resource';
+
+export const app = new OpenAPIHono();
 
 app.get('/', (c) => {
-  return c.text('Hello World');
+  return c.text('Pet Friends API 1.0.0.  See /doc for more information');
+});
+
+app.route('/', utilityResource);
+
+app.doc('/doc', {
+  openapi: '3.0.0',
+  info: {
+    version: '1.0.0',
+    title: 'Pet Friends API',
+  },
 });
 
 serve(app);
