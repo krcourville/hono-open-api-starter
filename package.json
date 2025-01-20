@@ -1,34 +1,41 @@
 {
   "name": "hono-open-api-starter",
   "private": true,
-  "scripts": {
-    "start": "npm run dev",
-    "dev": "turbo run dev",
-    "build": "turbo run build",
-    "lint": "turbo run lint",
-    "test": "turbo run test",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky install"
-  },
-  "devDependencies": {
-    "husky": "^9.1.7",
-    "lint-staged": "^9.5.0",
-    "prettier": "^3.4.2",
-    "turbo": "^2.3.3",
-    "typescript": "5.7.3"
-  },
-  "engines": {
-    "node": ">=22"
-  },
-  "packageManager": "npm@10.9.0",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
-  "prettier": "@vercel/style-guide/prettier",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint",
+    "prepare": "husky install",
+    "start": "npm run dev",
+    "test": "turbo run test"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,md}": [
+      "prettier --write",
+      "eslint --fix --max-warnings 0",
+      "git add"
+    ]
+  },
+  "prettier": "@vercel/style-guide/prettier",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^11.3.0-beta.2",
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "5.7.3"
+  },
+  "packageManager": "npm@10.9.0",
+  "engines": {
+    "node": ">=22"
   }
 }
