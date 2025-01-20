@@ -2,7 +2,8 @@
 
 ## Useful Links
 
-- [Based on this repo](https://github.com/vercel/turborepo/blob/main/examples/kitchen-sink)
+- [Base repo](https://github.com/vercel/turborepo/blob/main/examples/kitchen-sink)
+- [Style guide](https://www.npmjs.com/package/@vercel/style-guide)
 
 Learn more about the power of Turborepo:
 

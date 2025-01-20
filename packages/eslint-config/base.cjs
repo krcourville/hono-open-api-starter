@@ -9,6 +9,7 @@ module.exports = {
     "prettier",
     "turbo",
     require.resolve("@vercel/style-guide/eslint/node"),
+    require.resolve("@vercel/style-guide/eslint/typescript"),
   ],
   plugins: ["only-warn"],
   globals: {
