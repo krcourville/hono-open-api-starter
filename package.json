@@ -14,11 +14,6 @@
     "start": "npm run dev",
     "test": "turbo run test"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.{ts,tsx,md}": [
       "prettier --write",
