@@ -10,7 +10,7 @@
     "dev": "turbo run dev",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "prepare": "husky install",
+    "prepare": "husky",
     "start": "npm run dev",
     "test": "turbo run test"
   },
@@ -22,8 +22,7 @@
   "lint-staged": {
     "*.{ts,tsx,md}": [
       "prettier --write",
-      "eslint --fix --max-warnings 0",
-      "git add"
+      "eslint --fix --max-warnings 0"
     ]
   },
   "prettier": "@vercel/style-guide/prettier",
