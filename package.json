@@ -26,10 +26,9 @@
     "packages/*"
   ],
   "prettier": "@vercel/style-guide/prettier",
-  "lint-staged": {
-    "*.{ts,tsx,md}": [
-      "prettier --write",
-      "eslint --fix --max-warnings 0"
-    ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
