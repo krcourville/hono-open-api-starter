@@ -1,23 +1,29 @@
 {
-    "name": "pet-friends-api",
-    "version": "0.0.0",
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "test": "vitest",
-        "lint": "eslint . --max-warnings 0",
-        "lint:fix": "eslint . --fix --max-warnings 0"
-    },
-    "dependencies": {
-        "@hono/node-server": "^1.13.7",
-        "hono": "^4.6.17"
-    },
-    "devDependencies": {
-        "@hono/vite-dev-server": "^0.18.1",
-        "@repo/eslint-config": "*",
-        "@repo/typescript-config": "*",
-        "vite": "^6.0.7",
-        "vitest": "^3.0.2"
-    }
+  "name": "pet-friends-api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix --max-warnings 0",
+    "test": "vitest"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,md}": [
+      "prettier --write",
+      "eslint --fix --max-warnings 0"
+    ]
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.7",
+    "hono": "^4.6.17"
+  },
+  "devDependencies": {
+    "@hono/vite-dev-server": "^0.18.1",
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "vite": "^6.0.7",
+    "vitest": "^3.0.2"
+  }
 }
