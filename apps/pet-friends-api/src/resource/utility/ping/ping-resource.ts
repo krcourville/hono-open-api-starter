@@ -2,8 +2,11 @@ import { z, createRoute, OpenAPIHono } from '@hono/zod-openapi';
 
 export const pingResource = new OpenAPIHono();
 
-const PingParamsSchema = z.object({
-  message: z.string().optional(),
+const PingQuerySchema = z.object({
+  message: z.string().min(1).max(100).optional().openapi({
+    description: 'Optional message to echo back.',
+    example: 'Hello, World!',
+  }),
 });
 
 const PingResponseSchema = z.object({
@@ -17,7 +20,7 @@ const pingRoute = createRoute({
   method: 'get',
   path: '/ping',
   request: {
-    params: PingParamsSchema,
+    query: PingQuerySchema,
   },
   responses: {
     200: {
