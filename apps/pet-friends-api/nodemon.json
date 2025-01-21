@@ -4,5 +4,9 @@
     "ts": "vite-node"
   },
   "watch": ["src/**/*.ts"],
-  "ignore": ["*.spec.ts"]
+  "ignore": ["*.spec.ts"],
+  "env": {
+    "DEV_LOGGER": "true",
+    "LOG_LEVEL": "debug"
+  }
 }

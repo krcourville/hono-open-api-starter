@@ -17,7 +17,7 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
-      "env": ["PORT"],
+      "env": ["PORT", "DEV_LOGGER", "LOG_LEVEL"],
       "dependsOn": ["^dev"],
       "cache": false,
       "persistent": true

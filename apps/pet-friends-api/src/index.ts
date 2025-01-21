@@ -1,15 +1,13 @@
 import { createServer } from 'node:http';
 
 import { serve } from '@hono/node-server';
+import { getLogger } from '@repo/logging/logger';
 
-import { app } from './server';
+import { app } from './pet-friends-api';
 
-app.get('/', (c) => {
-  return c.text('Pet Friends API 1.0.0.  See /doc for more information.');
-});
+const logger = getLogger('pet-friends-api');
 
 const port: string = process.env.PORT || '4000';
-
 const server = serve(
   {
     fetch: app.fetch,
@@ -17,18 +15,15 @@ const server = serve(
     createServer,
   },
   (info) => {
-    // eslint-disable-next-line no-console -- TODO: implement logger
-    console.log(`Server is running on port http://localhost:${info.port} .`);
+    logger.info(`Server is running on port http://localhost:${info.port} .`);
   },
 );
 
 process.on('SIGINT', () => {
-  // eslint-disable-next-line no-console -- TODO: implement logger
-  console.log('Server is shutting down...');
+  logger.info('Server is shutting down...');
   server.close();
 });
 
 server.on('close', () => {
-  // eslint-disable-next-line no-console -- TODO: implement logger
-  console.log('Server shut down');
+  logger.info('Server shut down');
 });

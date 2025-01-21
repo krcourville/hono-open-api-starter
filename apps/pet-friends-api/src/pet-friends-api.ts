@@ -1,5 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { docsResource } from '@repo/open-api/docs-resource';
+import { loggerMiddleware } from '@repo/logging/logger-middleware';
 
 import { utilityResource } from './resource/utility/utility-resource';
 
@@ -17,6 +18,8 @@ export const app = new OpenAPIHono({
     }
   },
 });
+
+app.use('*', loggerMiddleware({ name: 'pet-friends-api' }));
 
 app.get('/', (c) => {
   return c.text('Pet Friends API 1.0.0.  See /doc for more information.');

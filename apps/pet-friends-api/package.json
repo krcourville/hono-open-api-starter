@@ -19,6 +19,7 @@
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@repo/open-api": "*",
+    "@repo/logging": "*",
     "nodemon": "^3.1.9",
     "vite": "^6.0.7",
     "vite-node": "^3.0.2",
