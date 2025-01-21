@@ -1,6 +1,8 @@
 import type { Env, ErrorHandler } from 'hono';
 import { getLogger } from '@repo/logging/logger';
 
+import { ApiError } from './errors';
+
 interface ErrorHandlerMiddlewareOptions {
   /**
    * The logger name to use for logging errors.
@@ -9,16 +11,32 @@ interface ErrorHandlerMiddlewareOptions {
 }
 
 /**
- * A middleware that logs errors and ensures
+ * A hono error handler that logs errors and ensures
  * API response is always in a consistent format.
+ *
+ * NOTE: ApiError instances are logged at the debug level.
  */
 export function errorHandler(
   options: ErrorHandlerMiddlewareOptions,
 ): ErrorHandler<Env> {
   return (err, c) => {
     const logger = getLogger(options.loggerName);
-    logger.error(err, 'Unhandled error');
 
+    if (err instanceof ApiError) {
+      logger.debug(
+        { err, user: err.details?.user, system: err.details?.system },
+        'API error',
+      );
+      return c.json(
+        {
+          message: 'Requested resource was not found',
+          details: err.details?.user,
+        },
+        err.statusCode,
+      );
+    }
+
+    logger.error(err, 'Unhandled error');
     return c.json(
       {
         message:
