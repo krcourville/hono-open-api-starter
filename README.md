@@ -6,7 +6,7 @@
 - [Why Turborepo?](WHY-TURBOREPO.md): Why Turborepo?
 - [/apps](apps): Runnable apps are located and may include APIs, API clients, and Integration Tests.
 - [/packages](packages): Shared libraries, used by apps.
-- [pet-friends-api](apps/pet-friends-api): Pet Friends API.
+- [pet-friends-api](apps/pet-friends-api/README.md): Pet Friends API.
 
 ## Getting Started
 
