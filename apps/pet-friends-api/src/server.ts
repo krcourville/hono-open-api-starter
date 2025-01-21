@@ -1,4 +1,5 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
+import { docsResource } from '@repo/open-api/docs-resource';
 
 import { utilityResource } from './resource/utility/utility-resource';
 
@@ -22,8 +23,9 @@ app.get('/', (c) => {
 });
 
 app.route('/', utilityResource);
+app.route('/', docsResource);
 
-app.doc('/doc', {
+app.doc('/openapi', {
   openapi: '3.0.0',
   info: {
     version: '1.0.0',

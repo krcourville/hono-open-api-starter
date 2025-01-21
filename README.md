@@ -2,18 +2,20 @@
 
 ## Contents
 
-- [Why Turborepo?](WHY-TURBOREPO.md)
+- [TODO](TODO.md): TODO list.
+- [Why Turborepo?](WHY-TURBOREPO.md): Why Turborepo?
 - [/apps](apps): Runnable apps are located and may include APIs, API clients, and Integration Tests.
 - [/packages](packages): Shared libraries, used by apps.
+- [pet-friends-api](apps/pet-friends-api): Pet Friends API.
 
-## TODO
+## Getting Started
 
-- [ ] Add a SWAGGER UI
-- [ ] Add a logger
-- [ ] Add a database
-- [ ] Add a user model
-- [ ] Add a pet model
-- [ ] Add a connection model
+```sh
+npm install
+npm run dev
+# OR
+npm start
+```
 
 ## Key Technologies
 
