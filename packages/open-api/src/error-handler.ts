@@ -1,7 +1,7 @@
 import type { Env, ErrorHandler } from 'hono';
 import { getLogger } from '@repo/logging/logger';
-
 import { ApiError } from './errors';
+
 
 interface ErrorHandlerMiddlewareOptions {
   /**
