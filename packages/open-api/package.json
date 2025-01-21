@@ -7,12 +7,12 @@
         "./docs-resource": "./src/docs-resource.ts"
     },
     "dependencies": {
-        "@scalar/hono-api-reference": "^0.5.167",
-        "hono": "^4.6.17"
+        "@hono/zod-openapi": "^0.18.3",
+        "@scalar/hono-api-reference": "^0.5.167"
     },
     "devDependencies": {
         "@repo/eslint-config": "*",
         "@repo/typescript-config": "*",
         "vitest": "^3.0.2"
-      }
+    }
 }

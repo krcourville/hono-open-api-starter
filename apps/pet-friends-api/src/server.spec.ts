@@ -1,6 +1,7 @@
-import { test, expect} from 'vitest';
+import { test, expect } from 'vitest';
+
 import { app } from './server';
 
-test("app exists", () => {
-    expect(app).toBeDefined();
+test('app exists', () => {
+  expect(app).toBeDefined();
 });

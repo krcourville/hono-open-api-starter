@@ -1,7 +1,7 @@
-import { Hono } from 'hono';
+import { OpenAPIHono } from '@hono/zod-openapi';
 import { apiReference } from '@scalar/hono-api-reference';
 
-export const docsResource = new Hono();
+export const docsResource = new OpenAPIHono();
 
 docsResource.get(
   '/docs',

@@ -10,3 +10,5 @@
 - [ ] runtime server vs dev server
 - [ ] dockerize
 - [ ] generate client
+- [ ] how to sync dependencies?
+- [ ] generate an api app
