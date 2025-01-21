@@ -10,6 +10,7 @@ module.exports = {
     'turbo',
     require.resolve('@vercel/style-guide/eslint/node'),
     require.resolve('@vercel/style-guide/eslint/typescript'),
+    "plugin:markdown/recommended-legacy"
   ],
   plugins: ['only-warn'],
   globals: {
