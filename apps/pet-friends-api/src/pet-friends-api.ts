@@ -1,31 +1,23 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { docsResource } from '@repo/open-api/docs-resource';
 import { loggerMiddleware } from '@repo/logging/logger-middleware';
+import { errorHandler } from '@repo/open-api/error-handler';
 
-import { utilityResource } from './resource/utility/utility-resource';
+import { utilities } from './resource/utilities/utilities-resource';
 
-export const app = new OpenAPIHono({
-  defaultHook: (result, c) => {
-    if (!result.success) {
-      return c.json(
-        {
-          ok: false,
-          errors: result,
-          source: 'error_handler',
-        },
-        422,
-      );
-    }
-  },
-});
+export const app = new OpenAPIHono();
 
-app.use('*', loggerMiddleware({ name: 'pet-friends-api' }));
+const loggerName = 'pet-friends-api';
+
+app.use('*', loggerMiddleware({ loggerName }));
+
+app.onError(errorHandler({ loggerName }));
 
 app.get('/', (c) => {
   return c.text('Pet Friends API 1.0.0.  See /doc for more information.');
 });
 
-app.route('/', utilityResource);
+app.route('/', utilities);
 app.route('/', docsResource);
 
 app.doc('/openapi', {

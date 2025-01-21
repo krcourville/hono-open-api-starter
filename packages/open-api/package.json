@@ -4,15 +4,18 @@
     "type": "module",
     "private": true,
     "exports": {
-        "./docs-resource": "./src/docs-resource.ts"
+        "./docs-resource": "./src/docs-resource.ts",
+        "./error-handler": "./src/error-handler.ts"
     },
     "dependencies": {
         "@hono/zod-openapi": "^0.18.3",
-        "@scalar/hono-api-reference": "^0.5.167"
+        "@scalar/hono-api-reference": "^0.5.167",
+        "hono": "^4.6.17"
     },
     "devDependencies": {
         "@repo/eslint-config": "*",
         "@repo/typescript-config": "*",
+        "@repo/logging": "*",
         "vitest": "^3.0.2"
     }
 }

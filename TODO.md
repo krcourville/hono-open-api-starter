@@ -1,8 +1,10 @@
 # TODO
 
 - [x] Add a API docs UI
-- [ ] Add a logger
+- [x] Add a logger
 - [ ] Error handling
+- [ ] Logger augmentation:
+  - current request context, verb, path, query params
 - [ ] Add a database
 - [ ] Add a user model
 - [ ] Add a pet model

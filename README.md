@@ -38,6 +38,7 @@ npm start
 
 - [Base repo](https://github.com/vercel/turborepo/blob/main/examples/kitchen-sink)
 - [Style guide](https://www.npmjs.com/package/@vercel/style-guide)
+- [A Complete Guide to Pino Logging in Node.js](https://betterstack.com/community/guides/logging/how-to-install-setup-and-use-pino-to-log-node-js-applications)
 
 ## More about Turborepo
 
