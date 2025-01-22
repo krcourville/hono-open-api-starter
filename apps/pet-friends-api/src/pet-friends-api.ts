@@ -1,6 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
-import { docsResource } from '@repo/open-api/docs-resource';
 import { loggerMiddleware } from '@repo/logging/logger-middleware';
+import { docsResource } from '@repo/open-api/docs-resource';
 import { errorHandler } from '@repo/open-api/error-handler';
 
 import { utilities } from './resource/utilities/utilities-resource';
@@ -26,8 +26,8 @@ app.doc('/openapi', {
     version: '1.0.0',
     title: 'Pet Friends API',
     description:
-      'The Pet Friends API is a RESTful API that allows you to make connections with ' +
-      'other pet owners.',
+      'The Pet Friends API is a RESTful API that allows you to make connections with '
+      + 'other pet owners.',
     contact: {
       name: 'Pet Friends',
       url: 'https://petfriends.local',

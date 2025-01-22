@@ -16,7 +16,6 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@repo/open-api": "*",
     "@repo/logging": "*",
