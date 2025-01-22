@@ -1,75 +1,53 @@
 {
-    "cSpell.words": [
-      "autodocs",
-      "AWSCURRENT",
-      "awssaml",
-      "buildspecs",
-      "Buttonize",
-      "clsx",
-      "codegen",
-      "datetime",
-      "dhiaws",
-      "dhigroupinc",
-      "dicepilot",
-      "Dismissable",
-      "dont",
-      "dotenv",
-      "echarts",
-      "fargate",
-      "FILESTACK",
-      "geocode",
-      "GEOSPATIAL",
-      "Grammarly",
-      "hookform",
-      "inputclass",
-      "Intellisearch",
-      "intellisearchlist",
-      "knip",
-      "knipignore",
-      "lastpass",
-      "libphonenumber",
-      "Mailosaur",
-      "MISREPRESTENTED",
-      "Moines",
-      "nextjs",
-      "numpadenter",
-      "ofccp",
-      "offcanvas",
-      "openweb",
-      "Optin",
-      "PARTTIME",
-      "pino",
-      "predev",
-      "prefs",
-      "Prefs",
-      "runbook",
-      "Seds",
-      "Serp",
-      "Seui",
-      "SPARKPOST",
-      "tailwindcss",
-      "TALENTSEARCH",
-      "testid",
-      "textbox",
-      "tinymce",
-      "typeahead",
-      "unoptimized",
-      "unprotect",
-      "unsave",
-      "upsert",
-      "viewports",
-      "webauthn",
-      "WORKPLACESETTINGS",
-      "zustand"
-    ],
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
-    },
-    "prettier.documentSelectors": ["**/.env*"],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.quickSuggestions": {
-      "strings": "on"
-    }
-  }
-  
+  // Disable the default formatter, use eslint instead
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+
+  // Auto fix
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  },
+
+  // Silent the stylistic rules in you IDE, but still auto fix them
+  "eslint.rules.customizations": [
+    { "rule": "style/*", "severity": "off", "fixable": true },
+    { "rule": "format/*", "severity": "off", "fixable": true },
+    { "rule": "*-indent", "severity": "off", "fixable": true },
+    { "rule": "*-spacing", "severity": "off", "fixable": true },
+    { "rule": "*-spaces", "severity": "off", "fixable": true },
+    { "rule": "*-order", "severity": "off", "fixable": true },
+    { "rule": "*-dangle", "severity": "off", "fixable": true },
+    { "rule": "*-newline", "severity": "off", "fixable": true },
+    { "rule": "*quotes", "severity": "off", "fixable": true },
+    { "rule": "*semi", "severity": "off", "fixable": true }
+  ],
+
+  // Enable eslint for all supported languages
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml",
+    "toml",
+    "xml",
+    "gql",
+    "graphql",
+    "astro",
+    "css",
+    "less",
+    "scss",
+    "pcss",
+    "postcss"
+  ],
+  "cSpell.words": [
+    "Hono",
+    "openapi"
+  ]
+}

@@ -36,15 +36,8 @@ npm start
 
 ## Useful Links
 
-- [Base repo](https://github.com/vercel/turborepo/blob/main/examples/kitchen-sink)
+- [Base repo for turborepo config](https://github.com/vercel/turborepo/blob/main/examples/kitchen-sink)
+- [Base repo for hono-openapi](https://github.com/w3cj/hono-open-api-starter)
 - [Style guide](https://www.npmjs.com/package/@vercel/style-guide)
 - [A Complete Guide to Pino Logging in Node.js](https://betterstack.com/community/guides/logging/how-to-install-setup-and-use-pino-to-log-node-js-applications)
-
-## More about Turborepo
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- <https://github.com/w3cj/hono-open-api-starter>
