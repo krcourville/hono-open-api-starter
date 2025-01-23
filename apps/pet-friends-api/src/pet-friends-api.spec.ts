@@ -1,7 +1,7 @@
-import { test, expect } from 'vitest';
+import { expect } from 'vitest';
 
 import { app } from './pet-friends-api';
 
-test('app exists', () => {
+it('app exists', () => {
   expect(app).toBeDefined();
 });

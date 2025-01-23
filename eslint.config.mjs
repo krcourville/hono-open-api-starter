@@ -1,27 +1,9 @@
-import antfu from "@antfu/eslint-config";
+/**
+ * NOTE: This is NOT the base ESLint configuration.
+ * This is the configuration for the root package.
+ * To modify eslint configuration for all packages,
+ * refer to the `@repo/eslint-config` package.
+ */
+import config from '@repo/eslint-config';
 
-export default antfu({
-  type: "app",
-  typescript: true,
-  formatters: true,
-  stylistic: {
-    indent: 2,
-    semi: true,
-    quotes: "single",
-  },
-  ignores: ["**/migrations/*"],
-}, {
-  rules: {
-    "no-console": ["warn"],
-    "antfu/no-top-level-await": ["off"],
-    "node/prefer-global/process": ["off"],
-    "node/no-process-env": ["error"],
-    "perfectionist/sort-imports": ["error", {
-      tsconfigRootDir: ".",
-    }],
-    "unicorn/filename-case": ["error", {
-      case: "kebabCase",
-      ignore: ["README.md"],
-    }],
-  },
-});
+export default config;

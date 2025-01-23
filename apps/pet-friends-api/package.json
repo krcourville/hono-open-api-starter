@@ -1,8 +1,8 @@
 {
   "name": "pet-friends-api",
+  "type": "module",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "nodemon src/index.ts",
     "lint": "eslint . --max-warnings 0",
@@ -12,13 +12,14 @@
   "dependencies": {
     "@hono/node-server": "^1.13.7",
     "@hono/zod-openapi": "^0.18.3",
+    "@repo/logging": "*",
+    "@repo/open-api": "*",
     "hono": "^4.6.17",
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@repo/open-api": "*",
-    "@repo/logging": "*",
     "nodemon": "^3.1.9",
     "vite": "^6.0.7",
     "vite-node": "^3.0.2",

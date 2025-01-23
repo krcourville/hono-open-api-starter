@@ -1,12 +1,13 @@
 import process from 'node:process';
-
 import { pino } from 'pino';
 
 type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
-const useDevLogger =
-  process.env.DEV_LOGGER === 'true' || process.env.DEV_LOGGER === '1';
+const useDevLogger
+  // eslint-disable-next-line node/no-process-env -- TODO: move to a zod schema
+  = process.env.DEV_LOGGER === 'true' || process.env.DEV_LOGGER === '1';
 
+// eslint-disable-next-line node/no-process-env -- TODO: move to a zod schema
 const logLevel = (process.env.LOG_LEVEL || 'info').toLowerCase();
 
 const devLoggerTransport = useDevLogger
@@ -39,6 +40,7 @@ export function getLogger(name: string): pino.Logger {
  * with a default of 'info' if the environment variable is not set or is invalid.
  */
 export function getLogLevel(): LogLevel {
+  // eslint-disable-next-line node/no-process-env -- TODO: move to a zod schema
   const envLevel = process.env.LOG_LEVEL?.toLowerCase();
 
   switch (envLevel) {
@@ -51,7 +53,6 @@ export function getLogLevel(): LogLevel {
     case 'error':
       return 'error';
     default:
-      // eslint-disable-next-line no-console -- provides feedback for invalid log level
       console.warn(`Invalid log level: ${envLevel}. Using 'info' as default.`);
       return 'info';
   }

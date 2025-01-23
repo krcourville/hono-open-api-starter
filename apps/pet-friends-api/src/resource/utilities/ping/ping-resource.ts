@@ -1,4 +1,4 @@
-import { z, createRoute, OpenAPIHono } from '@hono/zod-openapi';
+import { createRoute, OpenAPIHono, z } from '@hono/zod-openapi';
 
 // GET /ping
 

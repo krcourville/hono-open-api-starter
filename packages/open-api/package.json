@@ -1,21 +1,26 @@
 {
-    "name": "@repo/open-api",
-    "version": "0.0.0",
-    "type": "module",
-    "private": true,
-    "exports": {
-        "./docs-resource": "./src/docs-resource.ts",
-        "./error-handler": "./src/error-handler.ts",
-        "./errors": "./src/errors.ts"
-    },
-    "dependencies": {
-        "@hono/zod-openapi": "^0.18.3",
-        "@scalar/hono-api-reference": "^0.5.167",
-        "hono": "^4.6.17"
-    },
-    "devDependencies": {
-        "@repo/typescript-config": "*",
-        "@repo/logging": "*",
-        "vitest": "^3.0.2"
-    }
+  "name": "@repo/open-api",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./docs-resource": "./src/docs-resource.ts",
+    "./error-handler": "./src/error-handler.ts",
+    "./errors": "./src/errors.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix --max-warnings 0"
+  },
+  "dependencies": {
+    "@hono/zod-openapi": "^0.18.3",
+    "@repo/logging": "*",
+    "@scalar/hono-api-reference": "^0.5.167",
+    "hono": "^4.6.17"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "vitest": "^3.0.2"
+  }
 }

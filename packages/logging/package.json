@@ -1,15 +1,22 @@
 {
   "name": "@repo/logging",
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
   "private": true,
   "exports": {
     "./logger": "./src/logger.ts",
     "./logger-middleware": "./src/logger-middleware.ts"
   },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix --max-warnings 0"
+  },
   "dependencies": {
     "hono": "^4.6.17",
     "pino": "^9.6.0",
     "pino-pretty": "^13.0.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*"
   }
 }
