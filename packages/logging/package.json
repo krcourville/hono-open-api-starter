@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./logger": "./src/logger.ts",
-    "./logger-middleware": "./src/logger-middleware.ts"
+    ".": "./src/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

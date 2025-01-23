@@ -1,4 +1,4 @@
-import { notFound } from '@repo/open-api/errors';
+import { notFound } from '@repo/open-api';
 import { z } from 'zod';
 
 import type { AppRouteHandler } from '../../lib/types';

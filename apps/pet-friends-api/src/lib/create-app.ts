@@ -1,6 +1,6 @@
 import { OpenAPIHono } from '@hono/zod-openapi';
-import { loggerMiddleware } from '@repo/logging/logger-middleware';
-import { errorHandler } from '@repo/open-api/error-handler';
+import { loggerMiddleware } from '@repo/logging';
+import { errorHandler } from '@repo/open-api';
 import { notFound, serveEmojiFavicon } from 'stoker/middlewares';
 import { defaultHook } from 'stoker/openapi';
 

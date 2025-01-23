@@ -1,5 +1,5 @@
 import { createRoute } from '@hono/zod-openapi';
-import { ErrorResponseSchema } from '@repo/open-api/schemas';
+import { ErrorResponseSchema } from '@repo/open-api';
 import * as HttpResponse from 'stoker/http-status-codes';
 import { jsonContent } from 'stoker/openapi/helpers';
 

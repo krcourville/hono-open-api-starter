@@ -1,6 +1,6 @@
 import type { Env, ErrorHandler } from 'hono';
 
-import { getLogger } from '@repo/logging/logger';
+import { getLogger } from '@repo/logging';
 import { ZodError } from 'zod';
 
 import { ApiError } from './errors';
