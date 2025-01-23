@@ -7,6 +7,7 @@ import turboPlugin from 'eslint-plugin-turbo';
  *
  * @type {import("eslint").Linter.Config}
  */
+// eslint-disable-next-line no-restricted-exports -- default is required for exlint
 export default antfu(
   // antfu configuration
   {
@@ -45,6 +46,15 @@ export default antfu(
       // the typescript compiler handles this better
       'no-redeclare': 'off',
       '@typescript-eslint/no-redeclare': 'off',
+      'no-restricted-exports': ['error', {
+        restrictDefaultExports: {
+          direct: true,
+          named: true,
+          defaultFrom: true,
+          namedFrom: true,
+          namespaceFrom: true,
+        },
+      }],
     },
   },
 );

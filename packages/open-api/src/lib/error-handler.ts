@@ -18,9 +18,9 @@ interface ErrorHandlerMiddlewareOptions {
  *
  * NOTE: ApiError instances are logged at the debug level.
  */
-export function errorHandler(
+export function errorHandler<TBindings extends Env>(
   options: ErrorHandlerMiddlewareOptions,
-): ErrorHandler<Env> {
+): ErrorHandler<TBindings> {
   return (err, c) => {
     const logger = getLogger(options.loggerName);
 

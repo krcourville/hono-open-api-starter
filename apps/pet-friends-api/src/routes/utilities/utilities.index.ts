@@ -1,4 +1,5 @@
-import { createRouter } from '../../lib/create-app';
+import { createRouter } from '@repo/open-api';
+
 import * as handlers from './utilities.handlers';
 import * as routes from './utilities.routes';
 

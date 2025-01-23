@@ -1,11 +1,14 @@
-import configureOpenAPI from './lib/configure-open-api';
-import createApp from './lib/create-app';
+import { createApp } from '@repo/open-api';
+
+import { APP_FAVICON, APP_ID, APP_NAME } from './lib/constants';
 import { indexRouter } from './routes/index.route';
 import { utilitiesRouter } from './routes/utilities/utilities.index';
 
-export const app = createApp();
-
-configureOpenAPI(app);
+export const app = createApp({
+  appId: APP_ID,
+  favicon: APP_FAVICON,
+  appName: APP_NAME,
+});
 
 const routes = [indexRouter, utilitiesRouter] as const;
 

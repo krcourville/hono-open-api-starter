@@ -17,6 +17,7 @@ const server = serve(
   },
   (info) => {
     logger.info(`Server is running on port http://localhost:${info.port} .`);
+    logger.info(`API docs: http://localhost:${info.port}/docs`);
   },
 );
 

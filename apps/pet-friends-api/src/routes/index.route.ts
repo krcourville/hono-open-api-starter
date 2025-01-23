@@ -1,10 +1,10 @@
 import { createRoute } from '@hono/zod-openapi';
+import { createRouter } from '@repo/open-api';
 import * as HttpStatus from 'stoker/http-status-codes';
 import { jsonContent } from 'stoker/openapi/helpers';
 import { createMessageObjectSchema } from 'stoker/openapi/schemas';
 
 import { APP_NAME } from '../lib/constants';
-import { createRouter } from '../lib/create-app';
 
 export const indexRouter = createRouter().openapi(
   createRoute({
