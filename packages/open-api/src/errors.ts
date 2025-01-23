@@ -1,5 +1,7 @@
 import type { ContentfulStatusCode } from 'hono/utils/http-status';
 
+import * as HttpStatus from 'stoker/http-status-codes';
+
 interface ApiErrorDetails {
   /**
    * System specific details that should not be shared with the user.
@@ -57,7 +59,7 @@ export function notFound(
 ): ApiError {
   return new ApiError({
     message: 'The requested resource was not found.',
-    statusCode: 404,
+    statusCode: HttpStatus.NOT_FOUND,
     details: {
       user: {
         entity,

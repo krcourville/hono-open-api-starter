@@ -2,12 +2,13 @@ import { serve } from '@hono/node-server';
 import { getLogger } from '@repo/logging/logger';
 import { createServer } from 'node:http';
 
-import { app } from './pet-friends-api';
+import { app } from './src/app';
+import { APP_ID } from './src/lib/constants';
+import { env } from './src/lib/env';
 
-const logger = getLogger('pet-friends-api');
+const logger = getLogger(APP_ID);
 
-// eslint-disable-next-line node/no-process-env -- TODO: move to a zod schema
-const port: string = process.env.PORT || '4000';
+const port = env.PORT;
 const server = serve(
   {
     fetch: app.fetch,

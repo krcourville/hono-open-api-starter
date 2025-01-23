@@ -7,6 +7,7 @@ import comments from '@eslint-community/eslint-plugin-eslint-comments/configs';
  * @type {import("eslint").Linter.Config}
  */
 export default antfu(
+  // antfu configuration
   {
     type: 'app',
     typescript: true,
@@ -18,9 +19,11 @@ export default antfu(
     },
     ignores: ['**/migrations/*'],
   },
+  // other configurations
+  comments.recommended,
   {
     rules: {
-      'no-console': ['warn'],
+      // 'no-console': ['warn', { allow: [''] }],
       'antfu/no-top-level-await': ['off'],
       'node/prefer-global/process': ['off'],
       'node/no-process-env': ['error'],
@@ -31,14 +34,13 @@ export default antfu(
         case: 'kebabCase',
         ignore: ['.*\.md'],
       }],
-    },
-
-  },
-  comments.recommended,
-  {
-    rules: {
       // https://eslint-community.github.io/eslint-plugin-eslint-comments/rules/require-description.html
       '@eslint-community/eslint-comments/require-description': ['error', { ignore: [] }],
+      'no-console': ['warn', { allow: undefined }],
+
+      // the typescript compiler handles this better
+      'no-redeclare': 'off',
+      '@typescript-eslint/no-redeclare': 'off',
     },
   },
 );

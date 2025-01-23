@@ -2,7 +2,9 @@
 
 - [x] Add a API docs UI
 - [x] Add a logger
-- [ ] Error handling
+- [x] Common eslint config, without Prettier
+- [x] Error handling
+  - bad request, 422, 500, 404, 401, 403
 - [ ] Logger augmentation:
   - current request context, verb, path, query params
 - [ ] Add a database

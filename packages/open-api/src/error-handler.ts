@@ -1,6 +1,7 @@
 import type { Env, ErrorHandler } from 'hono';
 
 import { getLogger } from '@repo/logging/logger';
+import { ZodError } from 'zod';
 
 import { ApiError } from './errors';
 
@@ -34,6 +35,20 @@ export function errorHandler(
           details: err.details?.user,
         },
         err.statusCode,
+      );
+    }
+
+    if (err instanceof ZodError) {
+      const errors = err.issues;
+      logger.debug(errors, 'ZodError');
+      return c.json(
+        {
+          message: 'Validation failed',
+          details: {
+            errors,
+          },
+        },
+        422,
       );
     }
 
