@@ -5,8 +5,8 @@
 - [x] Common eslint config, without Prettier
 - [x] Error handling
   - bad request, 422, 500, 404, 401, 403
-- [ ] config management
-- [ ] secrets management
+- [x] config management
+- [x] secrets management
 - [ ] Logger augmentation:
   - current request context, verb, path, query params
 - [ ] Add a database
