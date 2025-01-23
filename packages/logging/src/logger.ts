@@ -1,13 +1,16 @@
+/* eslint-disable @eslint-community/eslint-comments/disable-enable-pair -- only in env.ts should we access process.env */
+/* eslint-disable node/no-process-env -- logger is a lower level service, as a result, it will not depend on app-config */
+/* eslint-disable no-console -- need to be able to log to console for any problems in logger */
+
 import process from 'node:process';
 import { pino } from 'pino';
 
 type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
+// avoiding zod for now, to reduce dependencies.
 const useDevLogger
-  // eslint-disable-next-line node/no-process-env -- TODO: move to a zod schema
   = process.env.DEV_LOGGER === 'true' || process.env.DEV_LOGGER === '1';
 
-// eslint-disable-next-line node/no-process-env -- TODO: move to a zod schema
 const logLevel = (process.env.LOG_LEVEL || 'info').toLowerCase();
 
 const devLoggerTransport = useDevLogger
@@ -40,7 +43,6 @@ export function getLogger(name: string): pino.Logger {
  * with a default of 'info' if the environment variable is not set or is invalid.
  */
 export function getLogLevel(): LogLevel {
-  // eslint-disable-next-line node/no-process-env -- TODO: move to a zod schema
   const envLevel = process.env.LOG_LEVEL?.toLowerCase();
 
   switch (envLevel) {

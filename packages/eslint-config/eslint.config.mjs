@@ -1,5 +1,6 @@
 import antfu from '@antfu/eslint-config';
 import comments from '@eslint-community/eslint-plugin-eslint-comments/configs';
+import turboPlugin from 'eslint-plugin-turbo';
 
 /**
  * A shared ESLint configuration for the repository.
@@ -22,6 +23,9 @@ export default antfu(
   // other configurations
   comments.recommended,
   {
+    plugins: {
+      turbo: turboPlugin,
+    },
     rules: {
       // 'no-console': ['warn', { allow: [''] }],
       'antfu/no-top-level-await': ['off'],
