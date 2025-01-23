@@ -20,6 +20,7 @@ export default function configureOpenAPI(app: AppOpenAPI) {
   app.get(
     '/docs',
     apiReference({
+      pageTitle: `API Reference - ${APP_NAME}`,
       theme: 'kepler',
       layout: 'modern',
       defaultHttpClient: {
