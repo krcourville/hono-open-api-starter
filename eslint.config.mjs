@@ -4,6 +4,6 @@
  * To modify eslint configuration for all packages,
  * refer to the `@repo/eslint-config` package.
  */
-import config from '@repo/eslint-config';
+import { appConfig} from '@repo/eslint-config';
 
-export default config;
+export default appConfig;
