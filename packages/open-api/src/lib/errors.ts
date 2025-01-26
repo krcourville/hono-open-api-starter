@@ -47,6 +47,7 @@ export class ApiError extends Error {
 }
 
 /**
+ * Utility function to create a not found error.
  *
  * @param entity - name of the entity that was not found
  * @param id - id of the entity that was not found
