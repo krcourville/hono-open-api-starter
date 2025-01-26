@@ -29,12 +29,39 @@ const root = pino({
   ...devLoggerTransport,
 });
 
+export type LoggerContextProvider = () => Record<string, string | undefined>;
+
+const contextProviders: LoggerContextProvider[] = [];
+
+/**
+ * Adds a context provider that is responsible
+ * for providing additional context on all log entries.
+ *
+ * Use this to augment your logging with common, useful data, such as
+ * corelation id and user id.
+ *
+ * WARNING: this provider will be call on every log entry.  Avoid
+ * expensive operations.
+ *
+ * @param provider - a context provider
+ */
+export function addLoggerContextProvider(provider: LoggerContextProvider) {
+  contextProviders.push(provider);
+}
+
 /**
  * Returns a named logger.
  */
 export function getLogger(name: string): pino.Logger {
+  const context = contextProviders.reduce((acc, provider) => {
+    return { ...acc, ...provider() };
+  }, {});
+
+  console.log('context', context);
+
   return root.child({
     name,
+    ...context,
   });
 }
 

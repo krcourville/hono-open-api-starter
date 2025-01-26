@@ -3,6 +3,7 @@ import type { Env } from 'hono';
 import { OpenAPIHono } from '@hono/zod-openapi';
 import { loggerMiddleware } from '@repo/logging';
 import { apiReference } from '@scalar/hono-api-reference';
+import { contextStorage } from 'hono/context-storage';
 import { notFound, serveEmojiFavicon } from 'stoker/middlewares';
 import { defaultHook } from 'stoker/openapi';
 
@@ -31,6 +32,7 @@ interface AppConfig {
  */
 export function createApp<TBindings extends Env>(config: AppConfig) {
   const app = createRouter<TBindings>();
+  app.use(contextStorage());
   app.use(serveEmojiFavicon(config.favicon));
   app.use(loggerMiddleware({ loggerName: config.appId }));
 
