@@ -45,7 +45,10 @@ export function errorHandler<TBindings extends Env>(
         {
           message: 'Validation failed',
           details: {
-            errors,
+            success: false,
+            error: {
+              issues: errors,
+            },
           },
         },
         422,

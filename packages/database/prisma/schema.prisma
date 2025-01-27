@@ -14,12 +14,19 @@ datasource db {
   schemas  = ["friend"]
 }
 
+/// A profile represents data about a friend in the system
 model Profile {
-  id            String   @id @default(uuid())
+  /// The unique identifier for the profile.  
+  id            String   @id @default(cuid())
+  /// The given name of the profile.
   givenName     String   @map("given_name")
+  /// The family name of the profile.
   familyName    String   @map("family_name")
+  /// The preferred name of the profile.
   preferredName String?  @map("preferred_name")
+  /// The date and time the profile was created.
   createdAt     DateTime @default(now()) @map("created_at")
+  /// The date and time the profile was last updated.
   updatedAt     DateTime @updatedAt @map("updated_at")
 
   @@map("profile")

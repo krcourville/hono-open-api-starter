@@ -9,8 +9,8 @@
 - [x] secrets management
 - [ ] Logger augmentation:
   - current request context, verb, path, query params
-- [ ] Add a database
-- [ ] Add a user model
+- [x] Add a database
+- [x] Add a user model
 - [ ] Add a pet model
 - [ ] Add a connection model
 - [ ] runtime server vs dev server
@@ -18,3 +18,4 @@
 - [ ] generate client
 - [ ] how to sync dependencies?
 - [ ] generate an api app
+- [ ] https://www.npmjs.com/package/@prisma/extension-optimize

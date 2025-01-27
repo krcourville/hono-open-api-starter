@@ -23,8 +23,17 @@ export type ErrorResponse = z.infer<typeof ErrorResponseSchema>;
 /**
  * Creates a response schema that contains a list of items.
  */
-export function createItemsResponse<T extends z.ZodTypeAny>(schema: T) {
+export function itemListSchema<T extends z.ZodTypeAny>(schema: T) {
   return z.object({
     items: z.array(schema),
+  });
+}
+
+/**
+ * Creates a response schema that contains a single item.
+ */
+export function itemSchema<T extends z.ZodTypeAny>(schema: T) {
+  return z.object({
+    item: schema,
   });
 }
