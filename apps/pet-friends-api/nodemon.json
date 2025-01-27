@@ -3,7 +3,7 @@
   "execMap": {
     "ts": "vite-node"
   },
-  "watch": ["src/**/*.ts"],
+  "watch": ["src/**/*.ts", "src/**/*.tsx"],
   "ignore": ["*.spec.ts"],
   "env": {
     "DEV_LOGGER": "true",

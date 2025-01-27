@@ -6,6 +6,7 @@ import { getContext } from 'hono/context-storage';
 
 import { APP_FAVICON, APP_ID, APP_NAME } from './lib/constants';
 import { indexRouter } from './routes/index.route';
+import { referenceApp } from './routes/reference/references.index';
 import { utilitiesRouter } from './routes/utilities/utilities.index';
 
 interface AppBindings extends Env {
@@ -40,7 +41,7 @@ addLoggerContextProvider(() => {
   }
 });
 
-const routes = [indexRouter, utilitiesRouter] as const;
+const routes = [indexRouter, utilitiesRouter, referenceApp] as const;
 
 routes.forEach((route) => {
   app.route('/', route);

@@ -5,13 +5,14 @@ import { jsonContent } from 'stoker/openapi/helpers';
 
 import { ErrorQuerySchema, PingResponseSchema } from './utilities.schemas';
 
+const basePath = '/api-utilities';
 const tags = ['Utilities'];
 
 export const ping = createRoute({
   tags,
   description: 'Utility endpoint to verify ping functionality',
   method: 'get',
-  path: '/utilities/ping',
+  path: `${basePath}/ping`,
   responses: {
     [HttpResponse.OK]: jsonContent(PingResponseSchema, 'Successful response'),
   },
@@ -22,7 +23,7 @@ export const error = createRoute({
   tags,
   description: 'Utility endpoint to verify error handling',
   method: 'post',
-  path: '/utilities/error',
+  path: `${basePath}/error`,
   request: {
     query: ErrorQuerySchema,
   },

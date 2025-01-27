@@ -1,0 +1,32 @@
+{
+  "name": "@repo/database",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "lint:fix": "eslint . --fix --max-warnings 0",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "db:migrate:dev": "prisma migrate dev",
+    "db:push": "prisma db push",
+    "db:seed": "vite-node src/seed.ts",
+    "format": "prisma format",
+    "generate": "prisma generate",
+    "prebuild": "npm run generate",
+    "predev": "npm run generate",
+    "studio": "prisma studio"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.2.1",
+    "@repo/app-config": "*",
+    "prisma": "^6.2.1",
+    "zod": "^3.24.1",
+    "zod-prisma-types": "^3.2.1"
+  },
+  "devDependencies": {
+    "vite-node": "^3.0.2"
+  }
+}

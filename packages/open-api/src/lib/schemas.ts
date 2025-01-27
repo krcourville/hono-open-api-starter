@@ -19,3 +19,12 @@ export const ErrorResponseSchema = MessageResponseSchema.and(
 );
 
 export type ErrorResponse = z.infer<typeof ErrorResponseSchema>;
+
+/**
+ * Creates a response schema that contains a list of items.
+ */
+export function createItemsResponse<T extends z.ZodTypeAny>(schema: T) {
+  return z.object({
+    items: z.array(schema),
+  });
+}

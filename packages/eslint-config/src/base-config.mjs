@@ -17,12 +17,13 @@ export function baseConfig(configs) {
       type: 'app',
       typescript: true,
       formatters: true,
+      jsx: true,
       stylistic: {
         indent: 2,
         semi: true,
         quotes: 'single',
       },
-      ignores: ['**/migrations/*'],
+      ignores: ['**/migrations/*', '**/dist/*', '**/node_modules/*', '**/generated/*'],
     },
     // other configurations
     jsDoc.configs['flat/recommended/typescript'],
