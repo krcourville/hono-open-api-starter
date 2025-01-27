@@ -1,0 +1,27 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+  output   = "../generated/zod"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["friend"]
+}
+
+model Profile {
+  id            String   @id @default(uuid())
+  givenName     String   @map("given_name")
+  familyName    String   @map("family_name")
+  preferredName String?  @map("preferred_name")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("profile")
+  @@schema("friend")
+}
