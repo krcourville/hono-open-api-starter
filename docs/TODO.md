@@ -19,3 +19,4 @@
 - [ ] how to sync dependencies?
 - [ ] generate an api app
 - [ ] https://www.npmjs.com/package/@prisma/extension-optimize
+- [ ] tracing/timing

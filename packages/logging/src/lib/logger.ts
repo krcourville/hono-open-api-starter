@@ -24,13 +24,6 @@ const devLoggerTransport = useDevLogger
     }
   : undefined;
 
-const root = pino({
-  level: logLevel,
-  ...devLoggerTransport,
-});
-
-export type LoggerContextProvider = () => Record<string, string | undefined>;
-
 const contextProviders: LoggerContextProvider[] = [];
 
 /**
@@ -49,19 +42,24 @@ export function addLoggerContextProvider(provider: LoggerContextProvider) {
   contextProviders.push(provider);
 }
 
+const root = pino({
+  level: logLevel,
+  ...devLoggerTransport,
+  mixin() {
+    return contextProviders.reduce((acc, provider) => {
+      return { ...acc, ...provider() };
+    }, {});
+  },
+});
+
+export type LoggerContextProvider = () => Record<string, string | undefined>;
+
 /**
  * Returns a named logger.
  */
 export function getLogger(name: string): pino.Logger {
-  const context = contextProviders.reduce((acc, provider) => {
-    return { ...acc, ...provider() };
-  }, {});
-
-  console.log('context', context);
-
   return root.child({
     name,
-    ...context,
   });
 }
 
