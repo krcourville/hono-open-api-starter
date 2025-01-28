@@ -16,19 +16,15 @@ export type AppBindsWithCorrelationId = Env & {
  */
 export function correlationId<TBindings extends AppBindsWithCorrelationId>() {
   addLoggerContextProvider(() => {
-    try {
-      const correlationId = getContext<TBindings>().var.correlationId;
-      return { correlationId };
-    }
-    catch {
-      return {
-        correlationId: undefined,
-      };
-    }
+    const context = getContext<TBindings>();
+    const correlationId = context.var.correlationId;
+    const route = `${context.req.method} ${context.req.routePath}`;
+    return { correlationId, route };
   });
 
   return async (c: Context<TBindings>, next: Next) => {
-    const correlationId = c.req.header('x-correlation-id') ?? crypto.randomUUID();
+    const correlationId
+      = c.req.header('x-correlation-id') ?? crypto.randomUUID();
     c.set('correlationId', correlationId);
     c.header('x-correlation-id', correlationId);
     await next();

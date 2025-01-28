@@ -1,6 +1,10 @@
 import { createRoute, z } from '@hono/zod-openapi';
-import { ProfileSchema } from '@repo/database';
-import { itemListSchema, itemSchema, MessageResponseSchema } from '@repo/open-api';
+import { PetSchema, ProfileSchema } from '@repo/database';
+import {
+  itemListSchema,
+  itemSchema,
+  MessageResponseSchema,
+} from '@repo/open-api';
 import * as HttpStatus from 'stoker/http-status-codes';
 import { jsonContent } from 'stoker/openapi/helpers';
 import { createErrorSchema } from 'stoker/openapi/schemas';
@@ -8,23 +12,46 @@ import { createErrorSchema } from 'stoker/openapi/schemas';
 const basePath = '/profiles';
 const tags = ['Profiles'];
 
-const ItemSchema = itemSchema(ProfileSchema);
+const ItemResponseSchema = itemSchema(ProfileSchema);
+const ItemRequestSchema = ProfileSchema.omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
 const ItemListSchema = itemListSchema(ProfileSchema);
 
 // Create
-const ProfileCreateSchema = ProfileSchema.omit({ id: true, createdAt: true, updatedAt: true });
+const ItemCreateSchema = ItemRequestSchema.and(
+  z.object({
+    pets: z.array(
+      PetSchema.omit({
+        id: true,
+        createdAt: true,
+        updatedAt: true,
+        profileId: true,
+      }),
+    ),
+  }),
+);
 
 export const create = createRoute({
+  operationId: 'createProfile',
   tags,
   description: 'Create a profile',
   method: 'post',
   path: `${basePath}`,
   request: {
-    body: jsonContent(ProfileCreateSchema, 'Profile to create'),
+    body: jsonContent(ItemCreateSchema, 'Profile to create'),
   },
   responses: {
-    [HttpStatus.CREATED]: jsonContent(ItemSchema, 'Successful response'),
-    [HttpStatus.UNPROCESSABLE_ENTITY]: jsonContent(createErrorSchema(ProfileCreateSchema), 'Validation error'),
+    [HttpStatus.CREATED]: jsonContent(
+      ItemResponseSchema,
+      'Successful response',
+    ),
+    [HttpStatus.UNPROCESSABLE_ENTITY]: jsonContent(
+      createErrorSchema(ItemCreateSchema),
+      'Validation error',
+    ),
   },
 });
 
@@ -32,7 +59,14 @@ export type CreateRoute = typeof create;
 
 // GetById
 
+const GetByIdQuerySchema = ItemResponseSchema.and(
+  z.object({
+    pets: PetSchema.array().optional(),
+  }),
+);
+
 export const getById = createRoute({
+  operationId: 'getProfileById',
   tags,
   description: 'Retrieve a profile by id',
   method: 'get',
@@ -43,8 +77,11 @@ export const getById = createRoute({
     }),
   },
   responses: {
-    [HttpStatus.OK]: jsonContent(ItemSchema, 'Successful response'),
-    [HttpStatus.NOT_FOUND]: jsonContent(MessageResponseSchema, 'Profile not found'),
+    [HttpStatus.OK]: jsonContent(GetByIdQuerySchema, 'Successful response'),
+    [HttpStatus.NOT_FOUND]: jsonContent(
+      MessageResponseSchema,
+      'Profile not found',
+    ),
   },
 });
 
@@ -52,6 +89,7 @@ export type GetByIdRoute = typeof getById;
 
 // List
 export const list = createRoute({
+  operationId: 'listProfiles',
   tags,
   description: 'List all profiles',
   method: 'get',
@@ -64,22 +102,33 @@ export const list = createRoute({
 export type ListRoute = typeof list;
 
 // Update
-const UpdateRequestSchema = ProfileCreateSchema.partial();
+const ItemUpdateSchema = ItemRequestSchema.partial();
 export const update = createRoute({
+  operationId: 'updateProfile',
   tags,
   description: 'Update a profile',
   method: 'put',
   path: `${basePath}/{id}`,
   request: {
-    params: z.object({
-      id: z.string().cuid(),
-    }),
-    body: jsonContent(UpdateRequestSchema, 'Profile to update'),
+    params: z
+      .object({
+        id: z.string().cuid(),
+      })
+      .openapi({
+        description: 'The id of the profile to update',
+      }),
+    body: jsonContent(ItemUpdateSchema, 'Profile to update'),
   },
   responses: {
-    [HttpStatus.OK]: jsonContent(ItemSchema, 'Successful response'),
-    [HttpStatus.NOT_FOUND]: jsonContent(MessageResponseSchema, 'Profile not found'),
-    [HttpStatus.UNPROCESSABLE_ENTITY]: jsonContent(createErrorSchema(UpdateRequestSchema), 'Validation error'),
+    [HttpStatus.OK]: jsonContent(ItemResponseSchema, 'Successful response'),
+    [HttpStatus.NOT_FOUND]: jsonContent(
+      MessageResponseSchema,
+      'Profile not found',
+    ),
+    [HttpStatus.UNPROCESSABLE_ENTITY]: jsonContent(
+      createErrorSchema(ItemUpdateSchema),
+      'Validation error',
+    ),
   },
 });
 
@@ -87,6 +136,7 @@ export type UpdateRoute = typeof update;
 
 // Delete
 export const remove = createRoute({
+  operationId: 'deleteProfile',
   tags,
   description: 'Delete a profile',
   method: 'delete',
@@ -97,8 +147,11 @@ export const remove = createRoute({
     }),
   },
   responses: {
-    [HttpStatus.GONE]: jsonContent(ItemSchema, 'Profile deleted'),
-    [HttpStatus.NOT_FOUND]: jsonContent(MessageResponseSchema, 'Profile not found'),
+    [HttpStatus.GONE]: jsonContent(ItemResponseSchema, 'Profile deleted'),
+    [HttpStatus.NOT_FOUND]: jsonContent(
+      MessageResponseSchema,
+      'Profile not found',
+    ),
   },
 });
 

@@ -12,13 +12,18 @@
   },
   "scripts": {
     "build": "turbo run build",
-    "dev": "docker-compose up -d && turbo run dev",
+    "dev": "docker-compose up -d && turbo run dev studio",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
     "prepare": "husky",
     "start": "npm run dev",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "generate": "turbo run generate",
+    "db:migrate:deploy": "npm run db:migrate:deploy -w packages/database",
+    "db:migrate:dev": "npm run db:migrate:dev -w packages/database",
+    "db:push": "npm run db:push -w packages/database",
+    "db:seed": "npm run db:seed -w packages/database"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",

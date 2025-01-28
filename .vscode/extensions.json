@@ -3,6 +3,7 @@
     "dbaeumer.vscode-eslint",
     "streetsidesoftware.code-spell-checker",
     "editorconfig.editorconfig",
-    "vitest.explorer"
+    "vitest.explorer",
+    "mylesmurphy.prettify-ts"
   ]
 }

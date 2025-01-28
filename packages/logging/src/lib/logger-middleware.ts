@@ -18,13 +18,17 @@ export function loggerMiddleware({
   return async (c: Context, next: Next) => {
     const logger = getLogger(name);
 
-    const { method, url } = c.req;
+    const { url } = c.req;
     const start = Date.now();
 
     await next();
 
     const duration = Date.now() - start;
     const { status } = c.res;
-    logger.debug({ method, url, duration, status }, 'Response');
+    let query: Record<string, unknown> | undefined = c.req.query();
+    if (Object.keys(query).length === 0) {
+      query = undefined;
+    }
+    logger.debug({ url, duration, status, query }, 'RESPONSE');
   };
 }

@@ -7,10 +7,10 @@
   - bad request, 422, 500, 404, 401, 403
 - [x] config management
 - [x] secrets management
-- [ ] Logger augmentation:
+- [x] Logger augmentation:
   - current request context, verb, path, query params
 - [x] Add a database
-- [x] Add a user model
+- [x] Add a profile model
 - [ ] Add a pet model
 - [ ] Add a connection model
 - [ ] runtime server vs dev server

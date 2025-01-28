@@ -1,14 +1,15 @@
 import type { Env } from 'hono';
 
 import { OpenAPIHono } from '@hono/zod-openapi';
-import { loggerMiddleware } from '@repo/logging';
+import { addLoggerContextProvider, loggerMiddleware } from '@repo/logging';
 import { apiReference } from '@scalar/hono-api-reference';
-import { contextStorage } from 'hono/context-storage';
+import { contextStorage, getContext } from 'hono/context-storage';
 import { notFound, serveEmojiFavicon } from 'stoker/middlewares';
 import { defaultHook } from 'stoker/openapi';
 
 import packageJSON from '../../package.json' with { type: 'json' };
 import { errorHandler } from './error-handler';
+import { correlationId } from './middleware';
 
 /**
  * Helper function that applies common configuration
@@ -32,8 +33,9 @@ interface AppConfig {
  */
 export function createApp<TBindings extends Env>(config: AppConfig) {
   const app = createRouter<TBindings>();
-  app.use(contextStorage());
   app.use(serveEmojiFavicon(config.favicon));
+  app.use(contextStorage());
+  app.use(correlationId());
   app.use(loggerMiddleware({ loggerName: config.appId }));
 
   app.notFound(notFound);
@@ -62,6 +64,14 @@ export function createApp<TBindings extends Env>(config: AppConfig) {
       },
     }),
   );
+
+  // To assist in tracing, ensure all logs include the current route
+  addLoggerContextProvider(() => {
+    const context = getContext<TBindings>();
+    return {
+      route: `${context.req.method} ${context.req.routePath}`,
+    };
+  });
 
   return app;
 }

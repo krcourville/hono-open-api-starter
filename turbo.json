@@ -21,9 +21,20 @@
     },
     "dev": {
       "env": ["PORT", "DEV_LOGGER", "LOG_LEVEL"],
-      "dependsOn": ["^dev"],
+      "dependsOn": ["^seed", "^generate", "^dev"],
       "cache": false,
       "persistent": true
+    },
+    "studio": {
+      "dependsOn": ["^seed"],
+      "cache": false,
+      "persistent": true
+    },
+    "generate": {
+      "dependsOn": ["^generate"]
+    },
+    "seed": {
+      "dependsOn": ["^seed"]
     }
   }
 }

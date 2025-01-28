@@ -1,6 +1,7 @@
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
+  output          = "../generated/client"
 }
 
 generator zod {
@@ -11,13 +12,13 @@ generator zod {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas  = ["friend"]
+  schemas  = ["friend", "pet"]
 }
 
 /// A profile represents data about a friend in the system
 model Profile {
   /// The unique identifier for the profile.  
-  id            String   @id @default(cuid())
+  id     String   @id @default(cuid()) @map("id")
   /// The given name of the profile.
   givenName     String   @map("given_name")
   /// The family name of the profile.
@@ -28,7 +29,50 @@ model Profile {
   createdAt     DateTime @default(now()) @map("created_at")
   /// The date and time the profile was last updated.
   updatedAt     DateTime @updatedAt @map("updated_at")
+  /// The pets owned by the profile.
+  pets          Pet[]
 
   @@map("profile")
   @@schema("friend")
+}
+
+/// An owned pet
+model Pet {
+  /// The unique identifier for the pet.
+  id       String   @id @default(cuid()) @map("id")
+  /// The name of the pet.
+  name        String   @map("name")
+  /// The breed of the pet.
+  breed       Breed    @relation(fields: [breedId], references: [id])
+  /// The breed id of the pet.
+  breedId     String   @map("breed_id")
+  /// The favorite toy of the pet.
+  favoriteToy String?  @map("favorite_toy")
+  /// The date and time the profile was created.
+  createdAt   DateTime @default(now()) @map("created_at")
+  /// The date and time the profile was last updated.
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  /// The owner id of the pet.
+  profileId     String   @map("profile_id")
+  /// The owner of the pet.
+  profile       Profile  @relation(fields: [profileId], references: [id])
+
+  @@map("pet")
+  @@schema("pet")
+}
+
+model Breed {
+  /// The unique identifier for the pet breed.
+  id   String   @id @default(cuid()) @map("breed_id")
+  /// The name of the pet breed.
+  name      String
+  /// The date and time the pet breed was created.
+  createdAt DateTime @default(now()) @map("created_at")
+  /// The date and time the pet breed was last updated.
+  updatedAt DateTime @updatedAt @map("updated_at")
+  /// The pets in this breed.
+  Pet       Pet[]
+
+  @@map("breed")
+  @@schema("pet")
 }

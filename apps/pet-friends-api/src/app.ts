@@ -1,4 +1,4 @@
-import { correlationId, createApp } from '@repo/open-api';
+import { createApp } from '@repo/open-api';
 
 import type { AppBindings } from './lib/types';
 
@@ -14,17 +14,12 @@ export const app = createApp<AppBindings>({
   appName: APP_NAME,
 });
 
-app.use(correlationId());
-
-const routes = [
-  indexRouter,
-  utilitiesRouter,
-  referenceApp,
-  profilesRouter,
-] as const;
+const routes = [indexRouter, utilitiesRouter, profilesRouter] as const;
 
 routes.forEach((route) => {
   app.route('/', route);
 });
+
+app.route('/reference', referenceApp);
 
 export type AppType = (typeof routes)[number];

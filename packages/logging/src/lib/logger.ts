@@ -47,12 +47,20 @@ const root = pino({
   ...devLoggerTransport,
   mixin() {
     return contextProviders.reduce((acc, provider) => {
-      return { ...acc, ...provider() };
+      let additionalContext: Record<string, unknown> | undefined;
+      try {
+        additionalContext = provider();
+      }
+      catch {
+        // ignore errors in context providers, in some cases,
+        // they are not yet available.
+      }
+      return { ...acc, ...additionalContext };
     }, {});
   },
 });
 
-export type LoggerContextProvider = () => Record<string, string | undefined>;
+export type LoggerContextProvider = () => Record<string, unknown> | undefined;
 
 /**
  * Returns a named logger.

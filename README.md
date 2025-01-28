@@ -36,8 +36,9 @@ npm start
 
 ## Useful Links
 
+- [Base repo for turborepo with Prisma](<[text](https://github.com/vercel/turborepo/tree/main/examples/with-prisma)>)
 - [Base repo for turborepo config](https://github.com/vercel/turborepo/blob/main/examples/kitchen-sink)
-- [Base repo for hono-openapi](https://github.com/w3cj/hono-open-api-starter)
+- [Base repo for hono-openapi - Primary layout example](https://github.com/w3cj/hono-open-api-starter)
 - [Style guide](https://www.npmjs.com/package/@vercel/style-guide)
 - [A Complete Guide to Pino Logging in Node.js](https://betterstack.com/community/guides/logging/how-to-install-setup-and-use-pino-to-log-node-js-applications)
 - <https://github.com/w3cj/hono-open-api-starter>
